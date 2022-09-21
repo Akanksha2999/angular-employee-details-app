@@ -1,0 +1,85 @@
+<app-header></app-header>
+<div class="form-content">
+    <form class="form" [formGroup]="employeeFormGroup" (ngSubmit)="onSubmit()">
+        <div class="form-head">Employee Payroll form </div>
+        <div class="row-content">
+            <mat-label class="label text">Full Name</mat-label>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <input class="name-input" matInput placeholder="Your name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="profile">Profile Image </label>
+            <div class="profile-radio-content">
+                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse 1.png"
+                    ngDefaultControl formControlName="profilePic">
+                    <img class="profile" src="../assets/profile-images/Ellipse 1.png">
+                </mat-radio-button>
+                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -2.png"
+                    ngDefaultControl formControlName="profilePic">
+                    <img class="profile" src="../assets/profile-images/Ellipse -2.png">
+                </mat-radio-button>
+                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -1.png"
+                    ngDefaultControl formControlName="profilePic">
+                    <img class="profile" src="../assets/profile-images/Ellipse -1.png">
+                </mat-radio-button>
+                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -3.png"
+                    ngDefaultControl formControlName="profilePic">
+                    <img class="profile" src="../assets/profile-images/Ellipse -3.png">
+                </mat-radio-button>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="gender">Gender</label>
+            <div>
+                <mat-radio-button type="radio" id="male" name="gender" color="primary" value="male" ngDefaultControl
+                    formControlName="gender">
+                    <label class="text" for="male">Male</label>
+                </mat-radio-button>
+                <mat-radio-button type="radio" id="female" name="gender" color="primary" value="female" ngDefaultControl
+                    formControlName="gender">
+                    <label class="text" for="female">Female</label>
+                </mat-radio-button>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="departments">Departments</label>
+            <div *ngFor="let departments of departments">
+                <mat-checkbox #checkbox class="checkbox" type="checkbox" color="primary" [value]="departments.value"
+                    (change)="onCheckboxChange($event)">
+                    <label class="text">{{departments.name}}</label>
+                </mat-checkbox>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="salary">Choose your Salary </label>
+            <mat-slider thumbLabel [displayWith]="formatLabel" #salaryOutput (change)="updateSetting($event)"
+                color="primary" tickInterval="1000" aria-label="units" class="salary-input" name="salary" min="300000"
+                max="500000" step="1000" [value]="salary" formControlName="salary"></mat-slider>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="startDate"> Start Date </label>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row-content">
+            <mat-label class="label text">Notes</mat-label>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <textarea matInput id="notes" class="input" name="Notes" placeholder="" style="height:100px"
+                    formControlName="note"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="buttonParent">
+            <a routerLink="/home-page">
+                <button mat-raised-button class="resetButton button cancelButton">Cancel</button>
+            </a>
+            <div class="submit-reset">
+                <button mat-raised-button type="submit" class="button submitButton" id="submitButton">Submit</button>
+                <button mat-raised-button type="reset" class="resetButton button">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
